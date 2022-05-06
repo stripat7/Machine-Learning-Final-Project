@@ -1,0 +1,109 @@
+﻿Country Name,Country Code,Series Name,Series Code,2010 [YR2010],2011 [YR2011],2012 [YR2012],2013 [YR2013],2014 [YR2014]
+"Congo, Dem. Rep.",COD,CO2 emissions (kt),EN.ATM.CO2E.KT,2060,2520,2430,3650,4790
+"Congo, Dem. Rep.",COD,Access to electricity (% of population),EG.ELC.ACCS.ZS,12.86934471,13.53587914,15.4,14.94590092,13.5
+"Congo, Dem. Rep.",COD,Agricultural land (% of land area),AG.LND.AGRI.ZS,11.46864868,11.55686906,13.57535123,13.8505988,14.15937011
+"Congo, Dem. Rep.",COD,"Air transport, freight (million ton-km)",IS.AIR.GOOD.MT.K1,0,0,0.206531325,0.081984,0.084444
+"Congo, Dem. Rep.",COD,Alternative and nuclear energy (% of total energy use),EG.USE.COMM.CL.ZS,2.684161867,2.710329197,2.419477325,2.26762471,2.359946277
+"Congo, Dem. Rep.",COD,Electric power consumption (kWh per capita),EG.USE.ELEC.KH.PC,104.6560836,108.0216267,112.1836565,117.0283067,108.5167041
+"Congo, Dem. Rep.",COD,"Electricity production from oil, gas and coal sources (% of total)",EG.ELC.FOSL.ZS,1.087919039,1.114065072,0.118234367,0.108985226,0.124434389
+"Congo, Dem. Rep.",COD,"Electricity production from renewable sources, excluding hydroelectric (% of total)",EG.ELC.RNWX.ZS,0,0,0.223331582,0.217970453,0.101809955
+"Congo, Dem. Rep.",COD,Energy use (kg of oil equivalent per capita),EG.USE.PCAP.KG.OE,307.4199583,315.7665691,378.9170558,385.1692217,389.3319336
+"Congo, Dem. Rep.",COD,Forest area (% of land area),AG.LND.FRST.ZS,60.50550275,60.01968373,59.53386471,59.0480457,58.56222668
+"Congo, Dem. Rep.",COD,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,3.078211005,3.691647321,2.87171647,4.17663824,5.355814142
+"Congo, Dem. Rep.",COD,"Population, total",SP.POP.TOTL,64563853,66755151,69020749,71358804,73767445
+"Congo, Dem. Rep.",COD,Urban population (% of total population),SP.URB.TOTL.IN.ZS,40.013,40.544,41.082,41.627,42.18
+"Iran, Islamic Rep.",IRN,CO2 emissions (kt),EN.ATM.CO2E.KT,550890,561730,571120,592480,610670
+"Iran, Islamic Rep.",IRN,Access to electricity (% of population),EG.ELC.ACCS.ZS,99.64732361,99.69103241,99.71684265,99.83,100
+"Iran, Islamic Rep.",IRN,Agricultural land (% of land area),AG.LND.AGRI.ZS,28.57351605,28.48338613,28.39325622,28.21410153,28.21410153
+"Iran, Islamic Rep.",IRN,"Air transport, freight (million ton-km)",IS.AIR.GOOD.MT.K1,96.53793737,85.87630786,66.23381387,84.45905908,96.43858378
+"Iran, Islamic Rep.",IRN,Alternative and nuclear energy (% of total energy use),EG.USE.COMM.CL.ZS,0.326110816,0.44157796,0.6165129,0.991012607,0.908868457
+"Iran, Islamic Rep.",IRN,Electric power consumption (kWh per capita),EG.USE.ELEC.KH.PC,2659.955255,2681.504789,2784.621808,2830.811233,3022.121939
+"Iran, Islamic Rep.",IRN,"Electricity production from oil, gas and coal sources (% of total)",EG.ELC.FOSL.ZS,95.83660644,94.74113942,94.2880964,92.56003414,93.17611586
+"Iran, Islamic Rep.",IRN,"Electricity production from renewable sources, excluding hydroelectric (% of total)",EG.ELC.RNWX.ZS,0.074261995,0.099561762,0.090452894,0.15127613,0.14748242
+"Iran, Islamic Rep.",IRN,Energy use (kg of oil equivalent per capita),EG.USE.PCAP.KG.OE,2769.463567,2791.107676,2869.332532,2889.109214,3060.386414
+"Iran, Islamic Rep.",IRN,Forest area (% of land area),AG.LND.FRST.ZS,6.564490778,6.564490778,6.564490778,6.564490778,6.564490778
+"Iran, Islamic Rep.",IRN,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,99.44489988,99.41712857,99.32468489,98.95888776,99.02258055
+"Iran, Islamic Rep.",IRN,"Population, total",SP.POP.TOTL,73762519,74634959,75539881,76481963,77465769
+"Iran, Islamic Rep.",IRN,Urban population (% of total population),SP.URB.TOTL.IN.ZS,70.626,71.2,71.755,72.295,72.83
+Iraq,IRQ,CO2 emissions (kt),EN.ATM.CO2E.KT,120230,131030,151860,162550,168840
+Iraq,IRQ,Access to electricity (% of population),EG.ELC.ACCS.ZS,98.25507355,98,99.3,98.84931946,99.09417725
+Iraq,IRQ,Agricultural land (% of land area),AG.LND.AGRI.ZS,18.92613741,19.68594585,19.72854117,20.41736539,21.35084583
+Iraq,IRQ,"Air transport, freight (million ton-km)",IS.AIR.GOOD.MT.K1,11.71864455,14.52137319,15.33562832,10.619112,10.619112
+Iraq,IRQ,Alternative and nuclear energy (% of total energy use),EG.USE.COMM.CL.ZS,0.786383634,0.512925065,0.627735249,0.639043033,0.330700641
+Iraq,IRQ,Electric power consumption (kWh per capita),EG.USE.ELEC.KH.PC,1237.039488,1314.226173,1141.140994,1427.720026,1328.230493
+Iraq,IRQ,"Electricity production from oil, gas and coal sources (% of total)",EG.ELC.FOSL.ZS,65.45145988,71.20197392,65.64170542,61.87737496,57.52124897
+Iraq,IRQ,"Electricity production from renewable sources, excluding hydroelectric (% of total)",EG.ELC.RNWX.ZS,0,0,0,0,0
+Iraq,IRQ,Energy use (kg of oil equivalent per capita),EG.USE.PCAP.KG.OE,1261.220463,1335.738181,1438.175564,1488.561275,1437.900626
+Iraq,IRQ,Forest area (% of land area),AG.LND.FRST.ZS,1.89952109,1.89952109,1.89952109,1.900361184,1.900361184
+Iraq,IRQ,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,97.55356735,97.67302488,97.57448177,96.68062348,95.98417678
+Iraq,IRQ,"Population, total",SP.POP.TOTL,29741977,30725305,31890012,33157061,34411949
+Iraq,IRQ,Urban population (% of total population),SP.URB.TOTL.IN.ZS,69.103,69.268,69.432,69.595,69.758
+"Korea, Dem. People's Rep.",PRK,CO2 emissions (kt),EN.ATM.CO2E.KT,51620,37040,38500,27820,31420
+"Korea, Dem. People's Rep.",PRK,Access to electricity (% of population),EG.ELC.ACCS.ZS,29.29593086,31.45312309,33.63673401,35.84445572,38.07227325
+"Korea, Dem. People's Rep.",PRK,Agricultural land (% of land area),AG.LND.AGRI.ZS,22.2572876,21.8420397,21.8420397,21.8420397,21.8420397
+"Korea, Dem. People's Rep.",PRK,"Air transport, freight (million ton-km)",IS.AIR.GOOD.MT.K1,1.619251323,1.364803735,2.786236959,3.039168,0.342349879
+"Korea, Dem. People's Rep.",PRK,Alternative and nuclear energy (% of total energy use),EG.USE.COMM.CL.ZS,4.55360633,6.057894924,6.08377123,8.231453391,7.011445517
+"Korea, Dem. People's Rep.",PRK,Electric power consumption (kWh per capita),EG.USE.ELEC.KH.PC,742.9678958,656.0103289,652.9670729,619.0657655,601.6890634
+"Korea, Dem. People's Rep.",PRK,"Electricity production from oil, gas and coal sources (% of total)",EG.ELC.FOSL.ZS,38.14623338,31.34297306,29.81908921,24.17630373,27.41079904
+"Korea, Dem. People's Rep.",PRK,"Electricity production from renewable sources, excluding hydroelectric (% of total)",EG.ELC.RNWX.ZS,0,0,0,0,0
+"Korea, Dem. People's Rep.",PRK,Energy use (kg of oil equivalent per capita),EG.USE.PCAP.KG.OE,770.1299532,567.3457059,574.7887615,435.1546561,475.3475695
+"Korea, Dem. People's Rep.",PRK,Forest area (% of land area),AG.LND.FRST.ZS,51.84278714,51.66647288,51.49015862,51.31384437,51.13753011
+"Korea, Dem. People's Rep.",PRK,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,66.51085379,63.55991563,64.84206245,59.93944795,62.05199476
+"Korea, Dem. People's Rep.",PRK,"Population, total",SP.POP.TOTL,24548840,24673392,24800638,24929500,25057793
+"Korea, Dem. People's Rep.",PRK,Urban population (% of total population),SP.URB.TOTL.IN.ZS,60.377,60.557,60.738,60.918,61.098
+Libya,LBY,CO2 emissions (kt),EN.ATM.CO2E.KT,57230,38050,52300,54990,59700
+Libya,LBY,Access to electricity (% of population),EG.ELC.ACCS.ZS,81.67895508,79.99588013,78.3392334,76.70668793,75.09424591
+Libya,LBY,Agricultural land (% of land area),AG.LND.AGRI.ZS,8.724439342,8.724439342,8.726712664,8.726712664,8.723871012
+Libya,LBY,"Air transport, freight (million ton-km)",IS.AIR.GOOD.MT.K1,7.528540059,5.72301943,2.128254767,3.672312,2.906666813
+Libya,LBY,Alternative and nuclear energy (% of total energy use),EG.USE.COMM.CL.ZS,0,0,0,0,0
+Libya,LBY,Electric power consumption (kWh per capita),EG.USE.ELEC.KH.PC,3361.748865,2839.083797,2241.259636,2320.599334,1811.054601
+Libya,LBY,"Electricity production from oil, gas and coal sources (% of total)",EG.ELC.FOSL.ZS,100,100,100,100,100
+Libya,LBY,"Electricity production from renewable sources, excluding hydroelectric (% of total)",EG.ELC.RNWX.ZS,0,0,0,0,0
+Libya,LBY,Energy use (kg of oil equivalent per capita),EG.USE.PCAP.KG.OE,3353.525609,2190.810697,2744.014518,3071.823238,2808.647353
+Libya,LBY,Forest area (% of land area),AG.LND.FRST.ZS,0.123327688,0.123327688,0.123327688,0.123327688,0.123327688
+Libya,LBY,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,99.28147735,98.90275075,99.08135299,99.18550597,99.11129636
+Libya,LBY,"Population, total",SP.POP.TOTL,6197667,6247438,6285751,6320350,6362039
+Libya,LBY,Urban population (% of total population),SP.URB.TOTL.IN.ZS,78.052,78.277,78.512,78.756,79.009
+Sudan,SDN,CO2 emissions (kt),EN.ATM.CO2E.KT,15870,15350,15210,14500,15330
+Sudan,SDN,Access to electricity (% of population),EG.ELC.ACCS.ZS,38.09628296,39.85937881,41.60363388,43.32481003,44.9
+Sudan,SDN,Agricultural land (% of land area),AG.LND.AGRI.ZS,36.87730857,36.88346881,36.88109748,36.87431814,36.87034987
+Sudan,SDN,"Air transport, freight (million ton-km)",IS.AIR.GOOD.MT.K1,14.63819337,22.71816826,23.54453376,12.415236,11.895
+Sudan,SDN,Alternative and nuclear energy (% of total energy use),EG.USE.COMM.CL.ZS,2.565084067,2.641849439,3.206193175,3.752617677,4.365390489
+Sudan,SDN,Electric power consumption (kWh per capita),EG.USE.ELEC.KH.PC,175.1627601,190.0441747,211.1412455,213.8509202,256.7562291
+Sudan,SDN,"Electricity production from oil, gas and coal sources (% of total)",EG.ELC.FOSL.ZS,17.29563942,23.51271437,29.85375159,19.1462466,21.65084388
+Sudan,SDN,"Electricity production from renewable sources, excluding hydroelectric (% of total)",EG.ELC.RNWX.ZS,0,0,0,0,0
+Sudan,SDN,Energy use (kg of oil equivalent per capita),EG.USE.PCAP.KG.OE,483.6921183,471.2163133,395.6589393,394.6062255,394.6396693
+Sudan,SDN,Forest area (% of land area),AG.LND.FRST.ZS,8.092829923,10.76413572,10.66988676,10.57567675,10.48162009
+Sudan,SDN,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,31.02909896,29.56457524,32.82946215,31.19913848,31.72652659
+Sudan,SDN,"Population, total",SP.POP.TOTL,34545014,35349676,36193781,37072555,37977657
+Sudan,SDN,Urban population (% of total population),SP.URB.TOTL.IN.ZS,33.089,33.207,33.346,33.507,33.689
+"Yemen, Rep.",YEM,CO2 emissions (kt),EN.ATM.CO2E.KT,23990,20690,19680,26350,26710
+"Yemen, Rep.",YEM,Access to electricity (% of population),EG.ELC.ACCS.ZS,60.67467499,61.88527298,52.41,75.6,66.1
+"Yemen, Rep.",YEM,Agricultural land (% of land area),AG.LND.AGRI.ZS,44.65973445,44.41919048,44.51199879,44.50821069,44.41843287
+"Yemen, Rep.",YEM,"Air transport, freight (million ton-km)",IS.AIR.GOOD.MT.K1,0,0,0,0,0
+"Yemen, Rep.",YEM,Alternative and nuclear energy (% of total energy use),EG.USE.COMM.CL.ZS,0,0,0,0,0
+"Yemen, Rep.",YEM,Electric power consumption (kWh per capita),EG.USE.ELEC.KH.PC,254.849372,193.8037733,193.8040245,250.963212,219.7998969
+"Yemen, Rep.",YEM,"Electricity production from oil, gas and coal sources (% of total)",EG.ELC.FOSL.ZS,100,100,100,100,100
+"Yemen, Rep.",YEM,"Electricity production from renewable sources, excluding hydroelectric (% of total)",EG.ELC.RNWX.ZS,0,0,0,0,0
+"Yemen, Rep.",YEM,Energy use (kg of oil equivalent per capita),EG.USE.PCAP.KG.OE,338.2601333,277.8335443,244.4377469,328.6889962,297.3051052
+"Yemen, Rep.",YEM,Forest area (% of land area),AG.LND.FRST.ZS,1.039831809,1.039831809,1.039831809,1.039831809,1.039831809
+"Yemen, Rep.",YEM,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,98.32089009,98.44509359,98.24042053,98.48850274,98.37372674
+"Yemen, Rep.",YEM,"Population, total",SP.POP.TOTL,23154854,23807586,24473176,25147112,25823488
+"Yemen, Rep.",YEM,Urban population (% of total population),SP.URB.TOTL.IN.ZS,31.776,32.364,32.958,33.559,34.165
+Lebanon,LBN,CO2 emissions (kt),EN.ATM.CO2E.KT,20880,21180,23480,23240,24940
+Lebanon,LBN,Access to electricity (% of population),EG.ELC.ACCS.ZS,99.87401581,99.68401095,99.98432922,99.99804688,100
+Lebanon,LBN,Agricultural land (% of land area),AG.LND.AGRI.ZS,62.56109482,63.63636364,64.32062561,64.32062561,64.32062561
+Lebanon,LBN,"Air transport, freight (million ton-km)",IS.AIR.GOOD.MT.K1,48.272,47.699,50.619,70.098,59.58
+Lebanon,LBN,Alternative and nuclear energy (% of total energy use),EG.USE.COMM.CL.ZS,1.322150841,1.287230864,1.40151531,1.745586879,0.523449394
+Lebanon,LBN,Electric power consumption (kWh per capita),EG.USE.ELEC.KH.PC,3046.195244,2948.276651,2487.89191,2766.439326,2588.864544
+Lebanon,LBN,"Electricity production from oil, gas and coal sources (% of total)",EG.ELC.FOSL.ZS,94.66013238,95.08096548,93.20787805,92.74318065,98.92491087
+Lebanon,LBN,"Electricity production from renewable sources, excluding hydroelectric (% of total)",EG.ELC.RNWX.ZS,0,0,0,0,0
+Lebanon,LBN,Energy use (kg of oil equivalent per capita),EG.USE.PCAP.KG.OE,1287.77379,1219.992534,1294.974195,1195.900535,1196.866306
+Lebanon,LBN,Forest area (% of land area),AG.LND.FRST.ZS,13.42619746,13.48445748,13.5427175,13.60097752,13.65923754
+Lebanon,LBN,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,94.97296041,95.51802998,96.36924729,95.74186308,97.62110111
+Lebanon,LBN,"Population, total",SP.POP.TOTL,4953064,5202022,5537620,5913016,6261046
+Lebanon,LBN,Urban population (% of total population),SP.URB.TOTL.IN.ZS,87.334,87.484,87.636,87.79,87.947
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
