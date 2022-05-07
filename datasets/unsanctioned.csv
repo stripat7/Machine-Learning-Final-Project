@@ -1598,7 +1598,4 @@ Zimbabwe,ZWE,Forest area (% of land area),AG.LND.FRST.ZS,46.28481324,46.16572315
 Zimbabwe,ZWE,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,24.8557054,28.49274324,28.86087341,29.0957594,27.82627036
 Zimbabwe,ZWE,Urban population (% of total population),SP.URB.TOTL.IN.ZS,33.196,33.015,32.834,32.654,32.504
 Zimbabwe,ZWE,"Population, total",SP.POP.TOTL,12697728,12894323,13115149,13350378,13586710
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
+END,END,END,END,0,0,0,0,0
