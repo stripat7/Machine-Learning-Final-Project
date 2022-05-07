@@ -11,3 +11,7 @@ pip3 install -r reqs.txt
 # Optional: Deactivate the virtual environment, returning to your system’s setup.
 deactivate
 ```
+## Running the code
+```
+python3 main_bestmodel.py --mode "train" --dataDir "datasets"
+```
