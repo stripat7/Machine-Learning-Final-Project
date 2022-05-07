@@ -53,7 +53,7 @@ if __name__ == "__main__":
                 if(isNewCountry):
                     if (not skip):
                         for i in range(num_years):
-                            X_u[i].append([country] + vec[i])
+                            X_u[i].append(vec[i])
 
                     vec = [ [] for _ in range(num_years) ]
                     skip = False
@@ -109,7 +109,7 @@ if __name__ == "__main__":
                 if(isNewCountry):
                     if (not skip):
                         for i in range(num_years):
-                            X_s[i].append([country] + vec[i])
+                            X_s[i].append(vec[i])
 
                     vec = [ [] for _ in range(num_years) ]
                     skip = False
