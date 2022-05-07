@@ -103,7 +103,4 @@ Lebanon,LBN,Forest area (% of land area),AG.LND.FRST.ZS,13.42619746,13.48445748,
 Lebanon,LBN,Fossil fuel energy consumption (% of total),EG.USE.COMM.FO.ZS,94.97296041,95.51802998,96.36924729,95.74186308,97.62110111
 Lebanon,LBN,"Population, total",SP.POP.TOTL,4953064,5202022,5537620,5913016,6261046
 Lebanon,LBN,Urban population (% of total population),SP.URB.TOTL.IN.ZS,87.334,87.484,87.636,87.79,87.947
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
-,,,,,,,,
+END,END,END,END,0,0,0,0,0
