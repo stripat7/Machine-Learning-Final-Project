@@ -31,13 +31,13 @@ def approx_train_acc_and_loss(model, train_data : np.ndarray, train_labels : np.
     Returns:
         np.float64: simple accuracy
     """
-    idxs = np.random.choice(len(train_data), 4000, replace=False)
+    idxs = np.random.choice(len(train_data), 100, replace=False)
     x = torch.from_numpy(train_data[idxs].astype(np.float32))
-    y = torch.from_numpy(train_labels[idxs].astype(np.int))
-    logits = model(x)
-    loss = F.cross_entropy(logits, y)
-    y_pred = torch.max(logits, 1)[1]
-    return accuracy(train_labels[idxs], y_pred.numpy()), loss.item()
+    y = torch.from_numpy(train_labels[idxs].astype(np.float32))
+    logits = torch.squeeze(model(x))
+    loss = F.mse_loss(logits, y)
+    y_pred = logits
+    return accuracy(train_labels[idxs], y_pred.detach().numpy()), loss.item()
 
 
 def dev_acc_and_loss(model, dev_data : np.ndarray, dev_labels : np.ndarray) -> np.float64:
@@ -54,8 +54,8 @@ def dev_acc_and_loss(model, dev_data : np.ndarray, dev_labels : np.ndarray) -> n
         np.float64: simple validation accuracy
     """
     x = torch.from_numpy(dev_data.astype(np.float32))
-    y = torch.from_numpy(dev_labels.astype(np.int))
-    logits = model(x)
-    loss = F.cross_entropy(logits, y)
-    y_pred = torch.max(logits, 1)[1]
-    return accuracy(dev_labels, y_pred.numpy()), loss.item()
+    y = torch.from_numpy(dev_labels.astype(np.float32))
+    logits = torch.squeeze(model(x))
+    loss = F.mse_loss(logits, y)
+    y_pred = logits
+    return accuracy(dev_labels, y_pred.detach().numpy()), loss.item()
