@@ -12,6 +12,15 @@ pip3 install -r reqs.txt
 deactivate
 ```
 ## Running the code
+### RNN
+Train:
+```
+python3 main_RNN.py --mode "train" --dataDir "datasets" --logDir "log_files" --modelSaveDir "model_files" --LR learning_rate --bs batch_size --epochs epochs
+```
+Predict:
+```
+python3 main_MLP.py --mode "predict" --dataDir "datasets" --weights "model_files/RNN.pt" --predictionsFile "RNN_predictions.csv"
+```
 ### LSTM
 Train:
 ```
