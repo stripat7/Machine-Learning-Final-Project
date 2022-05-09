@@ -24,9 +24,22 @@ class MLP(torch.nn.Module):
         
         self.l1 = torch.nn.Linear(input_shape, hidden_layer_width)
         self.l2 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
-        self.l3 = torch.nn.Linear(hidden_layer_width, 1)
-        
-        
+        self.l3 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l4 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l5 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        """self.l6 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l7 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l8 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l9 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l10 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l11 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l12 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l13 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l14 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l15 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l16 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)
+        self.l17 = torch.nn.Linear(hidden_layer_width, hidden_layer_width)"""
+        self.lf = torch.nn.Linear(hidden_layer_width, 1)
 
 
     def forward(self, x):
@@ -35,7 +48,22 @@ class MLP(torch.nn.Module):
         """
         x = F.relu(self.l1((x)))
         x = F.relu(self.l2(x))
-        x = self.l3(x)
+        x = F.relu(self.l3(x))
+        x = F.relu(self.l4(x))
+        x = F.relu(self.l5(x))
+        """ x = F.relu(self.l6(x))
+        x = F.relu(self.l7(x))
+        x = F.relu(self.l8(x))
+        x = F.relu(self.l9(x))
+        x = F.relu(self.l10(x))
+        x = F.relu(self.l11(x))
+        x = F.relu(self.l12(x))
+        x = F.relu(self.l13(x))
+        x = F.relu(self.l14(x))
+        x = F.relu(self.l15(x))
+        x = F.relu(self.l16(x))
+        x = F.relu(self.l17(x))"""
+        x = torch.squeeze(self.lf(x))
         return x
         
 
@@ -213,6 +241,24 @@ if __name__ == "__main__":
     x_test = np.array(x_test)
     y_test = np.array(y_test)
 
+    ### TODO Normalize each of the datasets in training, validation, and test datasets to a mean of 0; variance of 1.
+    meanT = np.mean(x_train, axis = 0)
+    meanD = np.mean(x_dev, axis = 0)
+    meanP = np.mean(x_test, axis = 0)
+
+    stdT = np.std(x_train, axis = 0)
+    stdD = np.std(x_dev, axis = 0)
+    stdP = np.std(x_test, axis = 0)
+    
+    x_train =  x_train.astype(np.float32) - meanT
+    x_dev = x_dev.astype(np.float32) - meanD
+    x_test = x_test.astype(np.float32) - meanP
+    
+
+    x_train = x_train.astype(np.float32) / stdT
+    x_dev = x_dev.astype(np.float32) / stdD
+    x_test = x_test.astype(np.float32) / stdP
+
     if MODE == "train":
         LOG_DIR = arguments.get('log_dir')
         MODEL_SAVE_DIR = arguments.get('model_save_dir')
@@ -233,7 +279,7 @@ if __name__ == "__main__":
         logger = csv.DictWriter(LOGFILE, log_fieldnames)
         logger.writeheader()
         
-        model = MLP(input_shape = SHAPE, hidden_layer_width = 100)
+        model = MLP(input_shape = SHAPE, hidden_layer_width = 14)
 
         optimizer = torch.optim.Adam(model.parameters(), lr = LEARNING_RATE)
         
@@ -244,9 +290,12 @@ if __name__ == "__main__":
             
             
             # Forward pass: Get value for x
-            value = torch.squeeze(model(x))
+            value = model(x)
             # Compute loss
             loss = F.mse_loss(value, y)
+            """print("value is:", value)
+            print("y is:", y)
+            print("loss is:", loss)"""
             # Zero gradients, perform a backward pass, and update the weights.
             optimizer.zero_grad()
             loss.backward()
@@ -263,7 +312,7 @@ if __name__ == "__main__":
                     'dev_acc': dev_acc
                 }
 
-                print(f"On step {step}:\tTrain loss {train_loss}\t|\tDev acc is {dev_acc}")
+                print(f"On step {step}:\tTrain loss {train_loss}\t|\tDev loss is {dev_loss}")
                 logger.writerow(step_metrics)
         LOGFILE.close()
 
@@ -293,5 +342,6 @@ if __name__ == "__main__":
         actual = y_test
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
         np.savetxt("MLP_actual.csv", y_test, fmt="%f")
+        np.savetxt("MLP_testvals.csv", x_test, fmt="%f")
         
     else: raise Exception("Mode not recognized")
