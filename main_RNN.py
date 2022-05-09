@@ -233,7 +233,7 @@ if __name__ == "__main__":
 
     x_dev = []
     y_dev = []
-    for year in train_data:
+    for year in dev_data:
         tempy = []
         tempx = []
         for data in year:
