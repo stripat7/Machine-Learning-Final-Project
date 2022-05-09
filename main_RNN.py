@@ -8,7 +8,7 @@ import torch.nn.functional as F
 import random
 import math
 from utils.io_argparse import get_args
-from utils.accuracies import (dev_acc_and_loss, accuracy, approx_train_acc_and_loss)
+from utils.accuracies import (dev_acc_and_loss, accuracy, approx_train_acc_and_loss, r2_score)
 from csv import reader
 
 class RNN(torch.nn.Module):
@@ -324,7 +324,8 @@ if __name__ == "__main__":
             
             if step%10 == 0:
                 print('Epoch: {}/{}.............'.format(step, EPOCHS), end=' ')
-                print("Loss: {:.4f}".format(loss.item()))
+                print("Loss: {:.4f}.............".format(loss.item()), end=' ')
+                print("R^2: {:.4f}".format(r2_score(output.detach().numpy(), target_seq.view(-1).float().detach().numpy())))
 
             """if step % 10 == 0:
                 train_acc, train_loss = approx_train_acc_and_loss(model, x_train, y_train)
@@ -371,7 +372,6 @@ if __name__ == "__main__":
 
         predictions = out
         print(f"Storing predictions in {PREDICTIONS_FILE}")
-        print(predictions)
         predictions = predictions.detach().numpy()
         actual = y_test
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
