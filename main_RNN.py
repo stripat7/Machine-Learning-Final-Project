@@ -294,12 +294,15 @@ if __name__ == "__main__":
         input_seq = input_seq[:-1]
         target_seq = target_seq[1:]
 
+        dev_in_seq = torch.from_numpy(x_dev.astype(np.float32))[:-1]
+        dev_targ_seq = torch.from_numpy(y_dev.astype(np.float32))[1:]
+
         SHAPE = len(x_train[0][0])
 
         # write logging model performance to an output file 
         # stored in LOG_DIR with the prefix being the time the model was trained.
         LOGFILE = open(os.path.join(LOG_DIR, f"MLP.log"),'w')
-        log_fieldnames = ['step', 'train_loss', 'train_acc', 'dev_loss', 'dev_acc']
+        log_fieldnames = ['step', 'train_loss', 'train_r^2', 'dev_loss', 'dev_r^2']
         logger = csv.DictWriter(LOGFILE, log_fieldnames)
         logger.writeheader()
         
@@ -321,26 +324,29 @@ if __name__ == "__main__":
             loss = criterion(output, target_seq.view(-1).float())
             loss.backward() # Does backpropagation and calculates gradients
             optimizer.step() # Updates the weights accordingly
-            
+
+            #Calculate dev values
+            dev_out, _ = model(dev_in_seq) # Dev set
+            dev_loss  = criterion(dev_out, dev_targ_seq.view(-1).float())
+            dev_r2 = r2_score(dev_out.detach().numpy(), dev_targ_seq.view(-1).float().detach().numpy())
+
             if step%10 == 0:
-                print('Epoch: {}/{}.............'.format(step, EPOCHS), end=' ')
-                print("Loss: {:.4f}.............".format(loss.item()), end=' ')
-                print("R^2: {:.4f}".format(r2_score(output.detach().numpy(), target_seq.view(-1).float().detach().numpy())))
+                print('Epoch: {}/{}.....'.format(step, EPOCHS), end=' ')
+                print("Train Loss: {:.4f}.....".format(loss.item()), end=' ')
+                print("Train R^2: {:.4f}.....".format(r2_score(output.detach().numpy(), target_seq.view(-1).float().detach().numpy())), end=' ')
+                print("Dev Loss: {:.4f}.....".format(dev_loss), end=' ')
+                print("Dev R^2: {:.4f}".format(dev_r2))
 
-            """if step % 10 == 0:
-                train_acc, train_loss = approx_train_acc_and_loss(model, x_train, y_train)
-                dev_acc, dev_loss = dev_acc_and_loss(model, x_dev, y_dev)
-                step_metrics = {
-                    'step': step, 
-                    'train_loss': loss.item(), 
-                    'train_acc': train_acc,
-                    'dev_loss': dev_loss,
-                    'dev_acc': dev_acc
-                }
 
-                print(f"On step {step}:\tTrain loss {train_loss}\t|\tDev loss is {dev_loss}")
-                logger.writerow(step_metrics)
-        LOGFILE.close()"""
+            step_metrics = {
+                'step': step, 
+                'train_loss': loss.item(), 
+                'train_r^2': r2_score(output.detach().numpy(), target_seq.view(-1).float().detach().numpy()),
+                'dev_loss': dev_loss,
+                'dev_r^2': dev_r2
+            }
+            logger.writerow(step_metrics)
+        LOGFILE.close()
 
         ### (OPTIONAL) You can remove the date prefix if you don't want to save every model you train
         ### i.e. "{DATE_PREFIX}_densenet.pt" > "densenet.pt"
