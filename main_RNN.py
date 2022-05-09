@@ -415,9 +415,9 @@ if __name__ == "__main__":
         predictions = []
         for i in range(len(actual)):
             loss = (out[i] - actual[i])**2
-            reliable = 0
+            reliable = 1
             if (loss > THRESHOLD):
-                reliable = 1
+                reliable = 0
 
             predictions.append(reliable)
         
