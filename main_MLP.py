@@ -72,6 +72,10 @@ if __name__ == "__main__":
     MODE = arguments.get('mode')
     DATA_DIR = arguments.get('data_dir')
 
+
+    np.random.seed(42)
+
+
     ##/-----------------PROCESS DATA---------------------\##
         
     #########LOAD UNSANCTIONED DATA###############
@@ -258,6 +262,27 @@ if __name__ == "__main__":
     x_train = x_train.astype(np.float32) / stdT
     x_dev = x_dev.astype(np.float32) / stdD
     x_test = x_test.astype(np.float32) / stdP
+    
+    
+    meanT = np.mean(y_train, axis = 0)
+    meanD = np.mean(y_dev, axis = 0)
+    meanP = np.mean(y_test, axis = 0)
+
+    stdT = np.std(y_train, axis = 0)
+    stdD = np.std(y_dev, axis = 0)
+    stdP = np.std(y_test, axis = 0)
+    
+    y_train =  y_train.astype(np.float32) - meanT
+    y_dev = y_dev.astype(np.float32) - meanD
+    y_test = y_test.astype(np.float32) - meanP
+    
+
+    y_train = y_train.astype(np.float32) / stdT
+    y_dev = y_dev.astype(np.float32) / stdD
+    y_test = y_test.astype(np.float32) / stdP
+    
+    
+    
 
     if MODE == "train":
         LOG_DIR = arguments.get('log_dir')
@@ -282,6 +307,8 @@ if __name__ == "__main__":
         model = MLP(input_shape = SHAPE, hidden_layer_width = 14)
 
         optimizer = torch.optim.Adam(model.parameters(), lr = LEARNING_RATE)
+        
+        dat = np.zeros((int(EPOCHS/100), 4))
         
         for step in range(EPOCHS):
             i = np.random.choice(x_train.shape[0], size=BATCH_SIZE, replace=False)
@@ -311,9 +338,16 @@ if __name__ == "__main__":
                     'dev_loss': dev_loss,
                     'dev_acc': dev_acc
                 }
+                dat[int(step/100), 0] = train_loss
+                dat[int(step/100), 1] = train_acc
+                dat[int(step/100), 2] = dev_loss
+                dat[int(step/100), 3] = dev_acc
 
                 print(f"On step {step}:\tTrain loss {train_loss}\t|\tDev loss is {dev_loss}")
                 logger.writerow(step_metrics)
+       
+        
+        np.savetxt("Training_data_MLP.csv", dat, fmt="%f")
         LOGFILE.close()
 
         ### TODO (OPTIONAL) You can remove the date prefix if you don't want to save every model you train
@@ -328,20 +362,32 @@ if __name__ == "__main__":
         WEIGHTS_FILE = arguments.get('weights')
         if WEIGHTS_FILE is None : raise TypeError("for inference, model weights must be specified")
         if PREDICTIONS_FILE is None : raise TypeError("for inference, a predictions file must be specified for output.")
-
+        THRESHOLD = 0.2
+ 
         model = torch.load(WEIGHTS_FILE)
+ 
+ 
+        model.eval() # eval mode
+        
+        y_pred = model(torch.from_numpy(x_test.astype(np.float32)))
+        
+        actual = torch.Tensor(y_test.astype(np.float32))
+ 
+        print(f"Storing predictions in {PREDICTIONS_FILE}")
+        
+        
         
         predictions = []
-        for test_case in x_test:
-            x = torch.from_numpy(test_case.astype(np.float32))
-            x = x.view(1,-1)
-            pred = model(x)
-            predictions.append(pred.item())
-        print(f"Storing predictions in {PREDICTIONS_FILE}")
-        predictions = np.array(predictions)
-        actual = y_test
+        for i in range(len(actual)):
+            loss = (y_pred[i] - actual[i])**2
+            reliable = 1
+            if (loss > THRESHOLD):
+                reliable = 0
+ 
+            predictions.append(reliable)
+        
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
-        np.savetxt("MLP_actual.csv", y_test, fmt="%f")
-        np.savetxt("MLP_testvals.csv", x_test, fmt="%f")
+        np.savetxt("RNN_actual.csv", y_test, fmt="%f")
+        np.savetxt("RNN_testvals.csv", x_test, fmt="%f")
         
     else: raise Exception("Mode not recognized")
