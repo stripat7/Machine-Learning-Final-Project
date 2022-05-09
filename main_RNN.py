@@ -276,6 +276,13 @@ if __name__ == "__main__":
         x_dev[i] = x_dev[i].astype(np.float32) / stdD
         x_test[i] = x_test[i].astype(np.float32) / stdP
 
+    #DELETEME#
+    for year in x_train:
+        year = year[0]
+    for  year in y_train:
+        year = year[0]
+    #DELETEME#
+
     if MODE == "train":
         LOG_DIR = arguments.get('log_dir')
         MODEL_SAVE_DIR = arguments.get('model_save_dir')
@@ -339,7 +346,7 @@ if __name__ == "__main__":
 
         ### TODO (OPTIONAL) You can remove the date prefix if you don't want to save every model you train
         ### i.e. "{DATE_PREFIX}_densenet.pt" > "densenet.pt"
-        model_savepath = os.path.join(MODEL_SAVE_DIR,f"MLP.pt")
+        model_savepath = os.path.join(MODEL_SAVE_DIR,f"RNN.pt")
         
         print("Training completed, saving model at {model_savepath}")
         torch.save(model, model_savepath)
@@ -365,7 +372,7 @@ if __name__ == "__main__":
         predictions = np.array(predictions)
         actual = y_test
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
-        np.savetxt("MLP_actual.csv", y_test, fmt="%f")
-        np.savetxt("MLP_testvals.csv", x_test, fmt="%f")
+        np.savetxt("RNN_actual.csv", y_test, fmt="%f")
+        np.savetxt("RNN_testvals.csv", x_test, fmt="%f")
         
     else: raise Exception("Mode not recognized")
