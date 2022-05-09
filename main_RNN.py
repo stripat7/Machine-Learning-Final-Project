@@ -366,9 +366,8 @@ if __name__ == "__main__":
         target_seq = target_seq[1:]
         
         for x in input_seq:
-            x = torch.unsqueeze(x,0)
-            print(x.shape)
-            out, h = model(x)
+            xd = torch.unsqueeze(x,0)
+            out, h = model(xd)
 
         predictions = out
         print(f"Storing predictions in {PREDICTIONS_FILE}")
