@@ -366,15 +366,17 @@ if __name__ == "__main__":
         target_seq = target_seq[1:]
         
         for x in input_seq:
+            x = torch.unsqueeze(x,0)
+            print(x.shape)
             out, h = model(x)
 
         predictions = out
         print(f"Storing predictions in {PREDICTIONS_FILE}")
         print(predictions)
-        predictions = np.array(predictions)
+        predictions = predictions.detach().numpy()
         actual = y_test
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
-        np.savetxt("RNN_actual.csv", y_test, fmt="%f")
-        np.savetxt("RNN_testvals.csv", x_test, fmt="%f")
+        np.savetxt("RNN_actual.csv", y_test[-1], fmt="%f")
+        np.savetxt("RNN_testvals.csv", x_test[-1], fmt="%f")
         
     else: raise Exception("Mode not recognized")
