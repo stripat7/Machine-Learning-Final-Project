@@ -259,6 +259,7 @@ if __name__ == "__main__":
 
     ### Normalize each of the datasets in training, validation, and test datasets to a mean of 0; variance of 1.
     for i in range(num_years):
+        # For x
         meanT = np.mean(x_train[i], axis = 0)
         meanD = np.mean(x_dev[i], axis = 0)
         meanP = np.mean(x_test[i], axis = 0)
@@ -275,6 +276,35 @@ if __name__ == "__main__":
         x_train[i] = x_train[i].astype(np.float32) / stdT
         x_dev[i] = x_dev[i].astype(np.float32) / stdD
         x_test[i] = x_test[i].astype(np.float32) / stdP
+
+        """
+        gradient clipping
+        clip values during back propagation
+
+        try different initializers for first hidden layer
+
+        mess around with activation functions. try leaky relu,
+
+        adding batch normalization
+        """
+
+        # For y
+        meanT = np.mean(y_train[i], axis = 0)
+        meanD = np.mean(y_dev[i], axis = 0)
+        meanP = np.mean(y_test[i], axis = 0)
+
+        stdT = np.std(y_train[i], axis = 0)
+        stdD = np.std(y_dev[i], axis = 0)
+        stdP = np.std(y_test[i], axis = 0)
+        
+        y_train[i] =  y_train[i].astype(np.float32) - meanT
+        y_dev[i] = y_dev[i].astype(np.float32) - meanD
+        y_test[i] = y_test[i].astype(np.float32) - meanP
+        
+
+        y_train[i] = y_train[i].astype(np.float32) / stdT
+        y_dev[i] = y_dev[i].astype(np.float32) / stdD
+        y_test[i] = y_test[i].astype(np.float32) / stdP
 
 
     if MODE == "train":
@@ -308,7 +338,7 @@ if __name__ == "__main__":
         
         # Instantiate the model with hyperparameters
         model = RNN(input_size=SHAPE, output_size=1, hidden_dim=20, n_layers=1)
-
+        
         # Define Loss, Optimizer
         criterion = torch.nn.MSELoss()
         optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
@@ -329,7 +359,7 @@ if __name__ == "__main__":
             dev_out, _ = model(dev_in_seq) # Dev set
             dev_loss  = criterion(dev_out, dev_targ_seq.view(-1).float())
             dev_r2 = r2_score(dev_out.detach().numpy(), dev_targ_seq.view(-1).float().detach().numpy())
-
+            
             if step%10 == 0:
                 print('Epoch: {}/{}.....'.format(step, EPOCHS), end=' ')
                 print("Train Loss: {:.4f}.....".format(loss.item()), end=' ')
