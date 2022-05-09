@@ -10,11 +10,11 @@ import math
 from utils.io_argparse import get_args
 from utils.accuracies import (dev_acc_and_loss, accuracy, approx_train_acc_and_loss, r2_score)
 from csv import reader
+import matplotlib.pyplot as plt
 
 class RNN(torch.nn.Module):
     def __init__(self, input_size, output_size, hidden_dim, n_layers):
         """Instantiate two nn.LInear modules and assign them as member variables
-
         Args:
             input_shape (int): shape of input going into neural net
             hidden_layer_width (int): number of nodes in the single hidden layer within the model
@@ -280,11 +280,8 @@ if __name__ == "__main__":
         """
         gradient clipping
         clip values during back propagation
-
         try different initializers for first hidden layer
-
         mess around with activation functions. try leaky relu,
-
         adding batch normalization
         """
 
@@ -343,7 +340,7 @@ if __name__ == "__main__":
         criterion = torch.nn.MSELoss()
         optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
-        
+        dat = np.zeros((int(EPOCHS / 10), 4))
         for step in range(EPOCHS):
             """i = np.random.choice(x_train.shape[0], size=BATCH_SIZE, replace=False)
             x = torch.from_numpy(x_train[i].astype(np.float32))
@@ -366,8 +363,14 @@ if __name__ == "__main__":
                 print("Train R^2: {:.4f}.....".format(r2_score(output.detach().numpy(), target_seq.view(-1).float().detach().numpy())), end=' ')
                 print("Dev Loss: {:.4f}.....".format(dev_loss), end=' ')
                 print("Dev R^2: {:.4f}".format(dev_r2))
+                
+                dat[int(step / 10) - 1, 0] = loss.item()
+                dat[int(step / 10) - 1, 1] = r2_score(output.detach().numpy(), target_seq.view(-1).float().detach().numpy())
+                dat[int(step / 10) - 1, 2] = dev_loss
+                dat[int(step / 10) - 1, 3] = dev_r2
+                
 
-
+            
             step_metrics = {
                 'step': step, 
                 'train_loss': loss.item(), 
@@ -376,6 +379,9 @@ if __name__ == "__main__":
                 'dev_r^2': dev_r2
             }
             logger.writerow(step_metrics)
+        np.savetxt("Training_data_RNN.csv", dat, fmt="%f")   
+        
+        
         LOGFILE.close()
 
         ### (OPTIONAL) You can remove the date prefix if you don't want to save every model you train
@@ -390,7 +396,6 @@ if __name__ == "__main__":
         WEIGHTS_FILE = arguments.get('weights')
         if WEIGHTS_FILE is None : raise TypeError("for inference, model weights must be specified")
         if PREDICTIONS_FILE is None : raise TypeError("for inference, a predictions file must be specified for output.")
-        THRESHOLD = 0.2
 
         model = torch.load(WEIGHTS_FILE)
 
@@ -407,20 +412,10 @@ if __name__ == "__main__":
             xd = torch.unsqueeze(x,0)
             out, h = model(xd)
 
+        predictions = out
         print(f"Storing predictions in {PREDICTIONS_FILE}")
-        
-        out = out.detach().numpy()
-        actual = y_test[-1]
-        
-        predictions = []
-        for i in range(len(actual)):
-            loss = (out[i] - actual[i])**2
-            reliable = 0
-            if (loss > THRESHOLD):
-                reliable = 1
-
-            predictions.append(reliable)
-        
+        predictions = predictions.detach().numpy()
+        actual = y_test
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
         np.savetxt("RNN_actual.csv", y_test[-1], fmt="%f")
         np.savetxt("RNN_testvals.csv", x_test[-1], fmt="%f")
