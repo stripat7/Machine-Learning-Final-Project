@@ -2,6 +2,8 @@ from math import ceil
 import torch
 import numpy as np
 import torch.nn.functional as F
+from scipy import stats
+#from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
 def accuracy(y : np.ndarray, y_hat : np.ndarray) -> np.float64:
@@ -18,6 +20,10 @@ def accuracy(y : np.ndarray, y_hat : np.ndarray) -> np.float64:
     ### TODO Implement accuracy function
     return 0
 
+def r2_score(y : np.ndarray, y_hat : np.ndarray):
+    """ Return R^2 where x and y are array-like."""
+    slope, intercept, r_value, p_value, std_err = stats.linregress(y, y_hat)
+    return r_value**2
 
 def approx_train_acc_and_loss(model, train_data : np.ndarray, train_labels : np.ndarray) -> np.float64:
     """Given a model, training data and its associated labels, calculate the simple accuracy when the 
