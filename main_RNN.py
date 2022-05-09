@@ -257,7 +257,7 @@ if __name__ == "__main__":
     x_test = np.array(x_test)
     y_test = np.array(y_test)
 
-    ### TODO Normalize each of the datasets in training, validation, and test datasets to a mean of 0; variance of 1.
+    ### Normalize each of the datasets in training, validation, and test datasets to a mean of 0; variance of 1.
     for i in range(num_years):
         meanT = np.mean(x_train[i], axis = 0)
         meanD = np.mean(x_dev[i], axis = 0)
@@ -276,12 +276,6 @@ if __name__ == "__main__":
         x_dev[i] = x_dev[i].astype(np.float32) / stdD
         x_test[i] = x_test[i].astype(np.float32) / stdP
 
-    #DELETEME#
-    for year in x_train:
-        year = year[0]
-    for  year in y_train:
-        year = year[0]
-    #DELETEME#
 
     if MODE == "train":
         LOG_DIR = arguments.get('log_dir')
@@ -297,6 +291,9 @@ if __name__ == "__main__":
         input_seq = torch.from_numpy(x_train.astype(np.float32))
         target_seq = torch.Tensor(y_train.astype(np.float32))
 
+        input_seq = input_seq[:-1]
+        target_seq = target_seq[1:]
+
         SHAPE = len(x_train[0][0])
 
         # write logging model performance to an output file 
@@ -307,7 +304,7 @@ if __name__ == "__main__":
         logger.writeheader()
         
         # Instantiate the model with hyperparameters
-        model = RNN(input_size=SHAPE, output_size=1, hidden_dim=12, n_layers=1)
+        model = RNN(input_size=SHAPE, output_size=1, hidden_dim=20, n_layers=1)
 
         # Define Loss, Optimizer
         criterion = torch.nn.MSELoss()
@@ -344,7 +341,7 @@ if __name__ == "__main__":
                 logger.writerow(step_metrics)
         LOGFILE.close()"""
 
-        ### TODO (OPTIONAL) You can remove the date prefix if you don't want to save every model you train
+        ### (OPTIONAL) You can remove the date prefix if you don't want to save every model you train
         ### i.e. "{DATE_PREFIX}_densenet.pt" > "densenet.pt"
         model_savepath = os.path.join(MODEL_SAVE_DIR,f"RNN.pt")
         
@@ -358,17 +355,22 @@ if __name__ == "__main__":
         if PREDICTIONS_FILE is None : raise TypeError("for inference, a predictions file must be specified for output.")
 
         model = torch.load(WEIGHTS_FILE)
+
+
+        model.eval() # eval mode
         
-        # This function takes in the model and character as arguments and returns the next character prediction and hidden state
-        # One-hot encoding our input to fit into the model
+        input_seq = torch.from_numpy(x_test.astype(np.float32))
+        target_seq = torch.Tensor(y_test.astype(np.float32))
+
+        input_seq = input_seq[:-1]
+        target_seq = target_seq[1:]
         
-        predictions = []
-        for test_case in x_test:
-            x = torch.from_numpy(test_case.astype(np.float32))
-            x = x.view(1,-1)
-            pred = model(x)
-            predictions.append(pred.item())
+        for x in input_seq:
+            out, h = model(x)
+
+        predictions = out
         print(f"Storing predictions in {PREDICTIONS_FILE}")
+        print(predictions)
         predictions = np.array(predictions)
         actual = y_test
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
