@@ -380,29 +380,7 @@ if __name__ == "__main__":
             }
             logger.writerow(step_metrics)
         np.savetxt("Training_data_RNN.csv", dat, fmt="%f")   
-        plt.figure(0)
-        plt.plot(dat[:, 0])
-        plt.title("Train Loss")
-        plt.xlabel("Epoch")
-        plt.ylabel("Loss Value")
         
-        plt.figure(1)
-        plt.plot(dat[:, 1])
-        plt.title("Train R^2")
-        plt.xlabel("Epoch")
-        plt.ylabel("R^2 Value")
-        
-        plt.figure(2)
-        plt.plot(dat[:, 2])
-        plt.title("Dev Loss")
-        plt.xlabel("Epoch")
-        plt.ylabel("Loss Value")
-        
-        plt.figure(3)
-        plt.plot(dat[:, 3])
-        plt.title("Dev R^2")
-        plt.xlabel("Epoch")
-        plt.ylabel("R^2 Value")
         
         LOGFILE.close()
 
