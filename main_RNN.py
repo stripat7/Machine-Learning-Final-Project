@@ -380,7 +380,29 @@ if __name__ == "__main__":
             }
             logger.writerow(step_metrics)
         np.savetxt("Training_data_RNN.csv", dat, fmt="%f")   
+        plt.figure(0)
+        plt.plot(dat[:, 0])
+        plt.title("Train Loss")
+        plt.xlabel("Epoch")
+        plt.ylabel("Loss Value")
         
+        plt.figure(1)
+        plt.plot(dat[:, 1])
+        plt.title("Train R^2")
+        plt.xlabel("Epoch")
+        plt.ylabel("R^2 Value")
+        
+        plt.figure(2)
+        plt.plot(dat[:, 2])
+        plt.title("Dev Loss")
+        plt.xlabel("Epoch")
+        plt.ylabel("Loss Value")
+        
+        plt.figure(3)
+        plt.plot(dat[:, 3])
+        plt.title("Dev R^2")
+        plt.xlabel("Epoch")
+        plt.ylabel("R^2 Value")
         
         LOGFILE.close()
 
@@ -397,6 +419,8 @@ if __name__ == "__main__":
         if WEIGHTS_FILE is None : raise TypeError("for inference, model weights must be specified")
         if PREDICTIONS_FILE is None : raise TypeError("for inference, a predictions file must be specified for output.")
 
+        THRESHOLD = 0.2
+
         model = torch.load(WEIGHTS_FILE)
 
 
@@ -412,10 +436,20 @@ if __name__ == "__main__":
             xd = torch.unsqueeze(x,0)
             out, h = model(xd)
 
-        predictions = out
         print(f"Storing predictions in {PREDICTIONS_FILE}")
-        predictions = predictions.detach().numpy()
-        actual = y_test
+        
+        out = out.detach().numpy()
+        actual = y_test[-1]
+        
+        predictions = []
+        for i in range(len(actual)):
+            loss = (out[i] - actual[i])**2
+            reliable = 0
+            if (loss > THRESHOLD):
+                reliable = 1
+
+            predictions.append(reliable)
+        
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
         np.savetxt("RNN_actual.csv", y_test[-1], fmt="%f")
         np.savetxt("RNN_testvals.csv", x_test[-1], fmt="%f")
