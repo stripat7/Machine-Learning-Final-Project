@@ -10,7 +10,7 @@ import math
 from utils.io_argparse import get_args
 from utils.accuracies import (dev_acc_and_loss, accuracy, approx_train_acc_and_loss, r2_score)
 from csv import reader
-import matplotlib.pyplot as plt
+
 
 class RNN(torch.nn.Module):
     def __init__(self, input_size, output_size, hidden_dim, n_layers):
@@ -397,6 +397,8 @@ if __name__ == "__main__":
         if WEIGHTS_FILE is None : raise TypeError("for inference, model weights must be specified")
         if PREDICTIONS_FILE is None : raise TypeError("for inference, a predictions file must be specified for output.")
 
+        THRESHOLD = 0.2
+
         model = torch.load(WEIGHTS_FILE)
 
 
@@ -412,10 +414,20 @@ if __name__ == "__main__":
             xd = torch.unsqueeze(x,0)
             out, h = model(xd)
 
-        predictions = out
         print(f"Storing predictions in {PREDICTIONS_FILE}")
-        predictions = predictions.detach().numpy()
-        actual = y_test
+        
+        out = out.detach().numpy()
+        actual = y_test[-1]
+        
+        predictions = []
+        for i in range(len(actual)):
+            loss = (out[i] - actual[i])**2
+            reliable = 0
+            if (loss > THRESHOLD):
+                reliable = 1
+
+            predictions.append(reliable)
+        
         np.savetxt(PREDICTIONS_FILE, predictions, fmt="%f")
         np.savetxt("RNN_actual.csv", y_test[-1], fmt="%f")
         np.savetxt("RNN_testvals.csv", x_test[-1], fmt="%f")
