@@ -308,11 +308,11 @@ if __name__ == "__main__":
         LOG_DIR = arguments.get('log_dir')
         MODEL_SAVE_DIR = arguments.get('model_save_dir')
         LEARNING_RATE = arguments.get('lr')
-        BATCH_SIZE = arguments.get('bs')
+        
         EPOCHS = arguments.get('epochs')
         DATE_PREFIX = datetime.datetime.now().strftime('%Y%m%d%H%M')
         if LEARNING_RATE is None: raise TypeError("Learning rate has to be provided for train mode")
-        if BATCH_SIZE is None: raise TypeError("batch size has to be provided for train mode")
+        
         if EPOCHS is None: raise TypeError("number of epochs has to be provided for train mode")
         
         input_seq = torch.from_numpy(x_train.astype(np.float32))
