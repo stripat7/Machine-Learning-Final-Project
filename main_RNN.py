@@ -10,7 +10,7 @@ import math
 from utils.io_argparse import get_args
 from utils.accuracies import (dev_acc_and_loss, accuracy, approx_train_acc_and_loss, r2_score)
 from csv import reader
-import matplotlib.pyplot as plt
+
 
 class RNN(torch.nn.Module):
     def __init__(self, input_size, output_size, hidden_dim, n_layers):
